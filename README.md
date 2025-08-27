@@ -16,20 +16,7 @@ A production-grade, serverless API for automatically auditing synthetic datasets
 -  **✅ Production-Ready**: Includes comprehensive error handling, logging, security best practices, and infrastructure-as-code.
 
 ## 📁 Project Structure
-synthetic-data-auditor/
-├── app/
-│ ├── init.py
-│ ├── main.py # FastAPI application and endpoint definitions
-│ └── audit_modules/ # Core audit logic
-│ ├── init.py
-│ ├── privacy.py # Membership Inference Attack simulation
-│ ├── fairness.py # Demographic Parity calculation
-│ └── fidelity.py # Total Variation Distance calculation
-├── tests/ # Unit and integration tests (Pytest)
-├── template.yaml # AWS SAM template for deployment
-├── requirements.txt # Python dependencies
-└── README.md
-
+<img width="455" height="281" alt="image" src="https://github.com/user-attachments/assets/fe91b525-cb39-4d4b-b47c-9ed0c3f01292" />
 
 ## 🛠️ Installation & Local Development
 
