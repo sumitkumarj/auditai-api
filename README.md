@@ -30,7 +30,6 @@ synthetic-data-auditor/
 ├── requirements.txt # Python dependencies
 └── README.md
 
-text
 
 ## 🛠️ Installation & Local Development
 
