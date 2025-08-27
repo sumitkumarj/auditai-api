@@ -1,0 +1,42 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Synthetic Data Audit API - FastAPI on AWS Lambda via Mangum
+
+Globals:
+  Function:
+    Runtime: python3.11
+    Timeout: 30
+    MemorySize: 2048
+    Tracing: Active
+    Environment:
+      Variables:
+        LOG_LEVEL: INFO
+
+Resources:
+  AuditApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: synthetic-data-audit-api
+      Handler: app.main.lambda_handler
+      CodeUri: .
+      Architectures:
+        - x86_64
+      Policies:
+        # Basic execution logs
+        - AWSLambdaBasicExecutionRole
+        # Read access to S3 objects (supports direct S3 GetObject when needed;
+        # pre-signed URLs generally don't require role perms but we include for flexibility)
+        - S3ReadPolicy:
+            BucketName: "*"  # Broad read for MVP; tighten to your buckets in production.
+      Events:
+        ApiRoot:
+          Type: Api
+          Properties:
+            Path: /audit
+            Method: post
+
+Outputs:
+  ApiEndpoint:
+    Description: API Gateway endpoint URL for the Audit API
+    Value:
+      Fn::Sub: "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/audit"
